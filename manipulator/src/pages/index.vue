@@ -38,7 +38,7 @@
           type="submit"
           variant="elevated"
           block
-          @click="login"
+          :to="{ path: '/home-page' }"
         >
           Entrar
         </v-btn>
@@ -65,9 +65,5 @@ import { ref } from 'vue'
 
 const email = ref('')
 const password = ref('')
-
-const login = () => {
-  this.$router.push({ name: 'home-page' })
-}
 
 </script>

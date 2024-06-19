@@ -1,13 +1,31 @@
 <template>
-    <v-sheet 
-        class="bg-green d-flex"
-        elevation="16"
-        style="width:100vw;height:100vh;align-items: center;flex-direction: row;"
-    >
-        <h1>Parabéns por ter chegado até aqui!</h1>
-  </v-sheet>
+  <v-card>
+    <v-layout>
+      <SideBar />
+      <v-main
+        style="height:100vh;background-color: white;"
+      >
+
+        <v-card                   
+          title="Card title"
+          subtitle="Subtitle"
+          text="..."
+          style="background-color: white;color:black;height:90vh"                    
+        >
+          <v-card-actions>
+            <v-btn>Click me</v-btn>
+          </v-card-actions>
+        </v-card>
+                
+        <Footer />
+      </v-main>
+    </v-layout>
+  </v-card>
+    
 </template>
 
 <script setup>
+import SideBar from '@/components/side-bar.vue'
+import Footer from '@/components/footer.vue'
 
 </script>
