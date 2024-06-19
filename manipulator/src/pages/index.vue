@@ -1,15 +1,73 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <VRow class="d-flex justify-center pt-10" style="align-items: center;vertical-align: center;">
-        <VCol md="4">
-            <v-card title="Card title" subtitle="Subtitle" text="...">
-                <v-card-actions>
-                    <v-btn>Click me</v-btn>
-                </v-card-actions>
-            </v-card>
-        </VCol>        
-    </VRow>
+    <v-sheet 
+        class="bg-green d-flex"
+        elevation="16"
+        style="width:100vw;height:100vh;align-items: center;flex-direction: row;"
+    >
+    <v-card class="mx-auto px-10 py-10" style="width:30%;">
+      <v-form        
+        @submit.prevent=""
+      >
+        <h2
+            class="mb-4 text-center text-green"
+        >
+            Manipulator
+        </h2>
+
+        <v-text-field
+          v-model="email"                    
+          class="mb-2"
+          label="Email"
+          hint="Digite o seu e-mail"
+          clearable
+        ></v-text-field>
+
+        <v-text-field
+          v-model="password"                    
+          label="Senha"          
+          hint="Digite a sua senha"
+          clearable
+        ></v-text-field>
+
+        <br>
+
+        <v-btn                    
+          color="success"
+          size="large"
+          type="submit"
+          variant="elevated"
+          block
+          @click="login"
+        >
+          Entrar
+        </v-btn>
+
+        <VRow class="pt-5 justify-end">
+          <span>
+            Não tem uma conta?
+            <span
+              class="text-green"
+              to="/register-page"
+              style="cursor:pointer;"
+            >
+              Registre-se
+            </span>.
+          </span>
+        </VRow>
+      </v-form>
+    </v-card>
+  </v-sheet>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
+const email = ref('')
+const password = ref('')
+
+const login = () => {
+  this.$router.push({ name: 'home-page' })
+}
 
 </script>
