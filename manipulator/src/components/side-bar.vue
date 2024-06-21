@@ -26,6 +26,13 @@
             value="clockin"
             :to="{ path: '/indication-page' }"
           />
+          <v-list-item
+            style="color:black;"
+            prepend-icon="mdi-clock-start"
+            title="Pacotes de Assinatura"
+            value="clockin"
+            :to="{ path: '/indication-page' }"
+          />
         </v-list>
         <div class="pa-2">
           <v-btn 
