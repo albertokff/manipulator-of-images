@@ -16,15 +16,7 @@
             class="mb-4 text-start text-green"
         >
             Criar conta
-        </h2>
-
-        <v-text-field
-          v-model="name"                    
-          class="mb-2"
-          label="Nome"
-          hint="Digite o seu nome completo"
-          clearable
-        ></v-text-field>
+        </h2>       
 
         <v-text-field
           v-model="email"                    
@@ -40,14 +32,7 @@
           hint="Digite a sua senha"
           clearable
         ></v-text-field>
-
-        <v-text-field
-          v-model="confirmPassword"                    
-          label="Confirmação de Senha"          
-          hint="Digite novamente sua senha"
-          clearable
-        ></v-text-field>
-
+        
         <br>
 
         <v-btn                    
@@ -56,9 +41,16 @@
           type="submit"
           variant="elevated"
           block
+          @click="makeRegister"
         >
           Registrar-se
         </v-btn>
+
+        <v-row v-if="showMessage">
+          <v-col md="4">
+            <span>{{ message }}</span>
+          </v-col>
+        </v-row>
 
       </v-form>
     </v-card>
@@ -67,10 +59,25 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useAuthenticationStore } from '@/stores/auth'
 
-const name = ref('')
 const email = ref('')
 const password = ref('')
-const confirmPassword = ref('')
+const authentication = useAuthenticationStore()
+
+const showMessage = ref(false)
+const message = ref('')
+
+const makeRegister = async () => {
+  try {
+    authentication.register(email.value, password.value)
+    showMessage.value = true
+    message.value = authentication.answerApi
+  }
+  catch (e) {
+    showMessage.value = true
+    message.value = authentication.answerApi    
+  }
+}
 
 </script>

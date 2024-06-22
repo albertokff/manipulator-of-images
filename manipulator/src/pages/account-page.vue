@@ -50,21 +50,21 @@
               </v-row>
 
               <v-row>
-                <v-col cols="2">
-                  <v-list-subheader style="color:black;">Confirmação de senha</v-list-subheader>
+                <v-col cols="3">
+                  <v-list-subheader style="color:black;">Método de Pagamento</v-list-subheader>
                 </v-col>
-
-                <v-col cols="8">
-                  <v-text-field                                                           
-                    label="Confirmação de Senha"
-                  ></v-text-field>
-                </v-col>                
+                <v-col cols="7">
+                  <v-select
+                    label="Selecione"
+                    :items="['Cartão', 'Pix']"
+                  ></v-select>
+                </v-col>
               </v-row>
-
-              <v-row class="d-flex justify-end pr-10">
-                <v-btn>
-                  Editar
-                </v-btn>
+              
+              <v-row class="d-flex justify-center pr-10">                
+                  <v-btn>
+                    Editar
+                  </v-btn>                
               </v-row>
             </v-container>
           </v-card>

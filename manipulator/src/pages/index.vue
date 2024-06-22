@@ -46,14 +46,15 @@
         <VRow class="pt-5 justify-end">
           <span>
             Não tem uma conta?
-            <span
+          </span>
+            <v-btn
               class="text-green"
-              to="/register-page"
+              to="register-page"
               style="cursor:pointer;"
             >
               Registre-se
-            </span>.
-          </span>
+            </v-btn>.
+ 
         </VRow>
       </v-form>
     </v-card>
