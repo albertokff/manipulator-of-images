@@ -17,9 +17,9 @@ export const useAuthenticationStore = defineStore('authentication', {
                     this.tokenLogin = userCredential.user.accessToken
 
                     if (this.tokenLogin)
-                        this.answerApi = message.loginSuccess
+                        this.answerApi = message.registerSuccess
                     else
-                        this.answerApi = message.loginFailed
+                        this.answerApi = message.registerFailed
                 }).catch((error) => {
                     switch (error.code) {
                       case 'auth/invalid-email':

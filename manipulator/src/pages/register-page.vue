@@ -67,6 +67,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useAuthenticationStore } from '@/stores/auth'
+import { useRouter } from 'vue-router';
 
 const email = ref('')
 const password = ref('')
@@ -76,6 +77,7 @@ const showMessage = ref(false)
 const message = ref('')
 const titleAlert = ref('')
 const typeAlert = ref('')
+const route = useRouter()
 
 const makeRegister = async () => {
   try {
@@ -93,6 +95,10 @@ const makeRegister = async () => {
     } else {
       titleAlert.value = 'Sucesso!'
       typeAlert.value = 'success'
+
+      setTimeout(() => {
+        route.push('/')        
+      }, 2500);
     }
   }
   catch (e) {
