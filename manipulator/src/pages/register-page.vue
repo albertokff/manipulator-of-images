@@ -46,9 +46,16 @@
           Registrar-se
         </v-btn>
 
-        <v-row v-if="showMessage">
-          <v-col md="4">
-            <span>{{ message }}</span>
+        <v-row 
+          v-if="showMessage"
+          class="d-flex justify-center pt-5"
+        >
+          <v-col md="12">
+            <v-alert
+              :text="message"
+              :title="titleAlert"
+              :type="typeAlert"
+            />
           </v-col>
         </v-row>
 
@@ -67,17 +74,35 @@ const authentication = useAuthenticationStore()
 
 const showMessage = ref(false)
 const message = ref('')
+const titleAlert = ref('')
+const typeAlert = ref('')
 
 const makeRegister = async () => {
   try {
     authentication.register(email.value, password.value)
+    const error = authentication.errorMessage
+
+    console.log(error)
+
     showMessage.value = true
     message.value = authentication.answerApi
+
+    if (error === 'auth/invalid-email' || error === 'auth/missing-password') {
+      titleAlert.value = 'Atenção!'
+      typeAlert.value = 'error'
+    } else {
+      titleAlert.value = 'Sucesso!'
+      typeAlert.value = 'success'
+    }
   }
   catch (e) {
     showMessage.value = true
     message.value = authentication.answerApi    
   }
+
+  setTimeout(() => {
+    showMessage.value = false
+  }, 2000);
 }
 
 </script>
