@@ -38,7 +38,7 @@
           type="submit"
           variant="elevated"
           block
-          :to="{ path: '/home-page' }"
+          @click="login"
         >
           Entrar
         </v-btn>
@@ -63,8 +63,18 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useAuthenticationStore } from '@/stores/auth'
 
 const email = ref('')
 const password = ref('')
 
+const authenticator = useAuthenticationStore()
+
+const login = async () => {
+  try {
+    authenticator.login(email.value, password.value)
+  } catch (e) {
+    console.log('Algo ocorreu de errado!')
+  }
+}
 </script>
