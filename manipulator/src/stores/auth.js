@@ -39,13 +39,15 @@ export const useAuthenticationStore = defineStore('authentication', {
     },
 
     async login(email, password) {
-      signInWithEmailAndPassword(auth, email, password)
+      await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          console.log(userCredential.user);
+          this.answerApi = message.loginSuccess
         })
         .catch((error) => {
-          console.log(error)
+          this.errorMessage = error.code
+          this.answerApi = message.loginFailed
         });
-          }
-        }
+    }
+  }
+        
 })

@@ -53,9 +53,20 @@
               style="cursor:pointer;"
             >
               Registre-se
-            </v-btn>.
- 
+            </v-btn>. 
         </VRow>
+        <v-row 
+          v-if="showMessage"
+          class="d-flex justify-center pt-5"
+        >
+          <v-col md="12">
+            <v-alert
+              :text="message"
+              :title="titleAlert"
+              :type="typeAlert"
+            />
+          </v-col>
+        </v-row>
       </v-form>
     </v-card>
   </v-sheet>
@@ -64,17 +75,41 @@
 <script setup>
 import { ref } from 'vue'
 import { useAuthenticationStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
 
 const email = ref('')
 const password = ref('')
+const message = ref('')
+const titleAlert = ref('')
+const typeAlert = ref('')
+const showMessage = ref(false)
 
-const authenticator = useAuthenticationStore()
+const authentication = useAuthenticationStore()
+const route = useRouter()
 
 const login = async () => {
   try {
-    authenticator.login(email.value, password.value)
+    await authentication.login(email.value, password.value)
+
+    const error = await authentication.errorMessage
+
+    showMessage.value = true
+    message.value = authentication.answerApi
+
+    if (error === 'auth/invalid-email' || error === 'auth/missing-password') {
+      titleAlert.value = 'Atenção!'
+      typeAlert.value = 'error'
+    } else {
+      titleAlert.value = 'Sucesso!'
+      typeAlert.value = 'success'
+
+      setTimeout(() => {
+        route.push('/home-page')        
+      }, 2500);
+    }
   } catch (e) {
-    console.log('Algo ocorreu de errado!')
+    showMessage.value = true
+    message.value = authentication.answerApi
   }
 }
 </script>

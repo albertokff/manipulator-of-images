@@ -84,8 +84,6 @@ const makeRegister = async () => {
     authentication.register(email.value, password.value)
     const error = authentication.errorMessage
 
-    console.log(error)
-
     showMessage.value = true
     message.value = authentication.answerApi
 
