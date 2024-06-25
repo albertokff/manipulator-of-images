@@ -1,11 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <v-sheet 
-        class="bg-green d-flex"
-        elevation="16"
-        style="width:100vw;height:100vh;align-items: center;flex-direction: row;"
-    >
-    <v-card class="mx-auto px-10 py-10" style="width:30%;">
+  <v-img src="@/assets/background2.jpg" style="width:100%;">
+    <div style="display:flex;align-items: center;flex-direction: row;height: 100vh;width:100vw">
+      <v-card class="mx-auto px-10 py-10" style="width:30%;">
       <v-form        
         @submit.prevent=""
       >
@@ -68,14 +65,16 @@
           </v-col>
         </v-row>
       </v-form>
-    </v-card>
-  </v-sheet>
+    </v-card>    
+    </div>
+  </v-img>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useAuthenticationStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
+import background from '@/assets/background2.jpg'
 
 const email = ref('')
 const password = ref('')
