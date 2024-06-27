@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <v-img src="@/assets/background2.jpg" style="width:100%;">
+  <v-img class="backgroundLogin" src="@/assets/background2.jpg">
     <div style="display:flex;align-items: center;flex-direction: row;height: 100vh;width:100vw">
-      <v-card class="mx-auto px-10 py-10" style="width:30%;">
+      <v-card class="formLogin mx-auto px-10 py-10" style="width:100%;">
       <v-form        
         @submit.prevent=""
       >
